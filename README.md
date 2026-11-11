@@ -1,111 +1,87 @@
-🎓 Grupo 18 – Machine Learning
-Alunos da UNIRIO: quem trabalha?
+Projeto Olist — Previsão de Preços com Machine Learning
+1. Descrição do projeto
 
-Projeto de Machine Learning desenvolvido para identificar se estudantes da UNIRIO trabalham ou não, utilizando características acadêmicas e pessoais.
+Este projeto utiliza dados da empresa Olist para desenvolver modelos de Machine Learning capazes de prever o preço de produtos com base em suas características físicas.
 
-📌 Sobre o projeto
+O objetivo é comparar diferentes algoritmos de regressão e identificar qual apresenta o melhor desempenho.
 
-O objetivo é desenvolver modelos de classificação capazes de prever a situação de trabalho dos estudantes com base em informações como:
+2. Dataset utilizado
 
-Desempenho acadêmico;
-Estresse;
-Quantidade de créditos;
-Horas de estudo;
-Mora com os pais;
-Reside no Rio de Janeiro (RJ);
-Possui namorado(a).
+Foi utilizado o dataset público da Olist, disponível no GitHub:
 
-Tipo de problema: Classificação binária.
+https://github.com/olist/work-at-olist-data
 
-Variável alvo: Trabalha (Sim / Não).
+Foram utilizados dois arquivos:
 
-Quantidade de registros: 95 estudantes.
+olist_order_items_dataset.csv
+olist_products_dataset.csv
 
-🛠️ Tecnologias utilizadas
-Python
-Pandas
-NumPy
-Matplotlib
-Seaborn
-Scikit-learn
-📊 Etapas do projeto
-Análise exploratória dos dados (EDA);
-Visualização e interpretação dos dados;
-Pré-processamento;
-Divisão entre treinamento e teste (70% / 30%);
-Treinamento dos modelos;
-Avaliação dos resultados;
-Comparação de diferentes valores de random_state.
-🤖 Modelos utilizados
+Os arquivos foram unidos por meio da coluna product_id.
 
-Regressão Logística
+3. Variáveis utilizadas
+Features (X)
+product_weight_g: peso do produto em gramas.
+product_length_cm: comprimento do produto em centímetros.
+product_height_cm: altura do produto em centímetros.
+product_width_cm: largura do produto em centímetros.
+Target (y)
+price: preço do produto.
+4. Pré-processamento
 
-Modelo utilizado para realizar a classificação binária dos estudantes.
+O pré-processamento incluiu:
 
-Árvore de Decisão
+Seleção das variáveis necessárias.
+Remoção de registros com valores ausentes.
+Remoção de preços e dimensões inválidos.
+Separação entre variáveis preditoras e variável alvo.
+Divisão dos dados em treinamento (80%) e teste (20%).
+5. Modelos utilizados
 
-Modelo utilizado para identificar padrões e regras de classificação nos dados.
+Foram desenvolvidos três modelos:
 
-📦 Instalação das dependências
+Dummy Regressor: utilizado como referência, realizando previsões com base na média dos preços.
+Regressão Linear: utilizada para identificar relações lineares entre as características físicas e o preço.
+Random Forest Regressor: utiliza várias árvores de decisão para realizar previsões e identificar relações não lineares.
+6. Métricas de avaliação
 
-Antes de executar o projeto, instale as bibliotecas necessárias:
+Foram utilizadas três métricas:
+
+MAE: erro absoluto médio. Quanto menor, melhor.
+RMSE: raiz do erro quadrático médio. Quanto menor, melhor.
+R²: coeficiente de determinação. Quanto maior, melhor.
+7. Resultados
+
+O projeto apresenta uma tabela comparativa com os resultados dos três modelos.
+
+Também são gerados gráficos para:
+
+Distribuição dos preços.
+Comparação do desempenho dos modelos.
+Valores reais versus valores previstos.
+Importância das variáveis no Random Forest.
+
+O modelo com melhor desempenho será identificado automaticamente com base no maior valor de R².
+
+8. Como executar
+
+Instale as bibliotecas necessárias:
 
 bash
 pip install pandas numpy matplotlib seaborn scikit-learn
 
-▶️ Como executar
-Clone o repositório:
-bash
-git clone https://github.com/Barroca07/Grupo18Machine.git
 
-Entre na pasta:
-bash
-cd Grupo18Machine
-
-Execute o projeto:
-bash
-python Trabalho_UNIRIO.py
-
-
-No Windows, também pode utilizar:
+Execute o arquivo:
 
 bash
-py Trabalho_UNIRIO.py
+python projeto_olist.py
 
 
-Observação: É necessário ter Python instalado e conexão com a internet para carregar a base de dados.
+É necessário ter conexão com a internet para carregar os arquivos CSV do GitHub.
 
-🗂️ Estrutura do projeto
-text
-Grupo18Machine/
-│
-├── Trabalho_UNIRIO.py
-│
-└── README.md
+9. Conclusão
 
-📚 Fonte dos dados
+O projeto permite analisar a aplicação de técnicas de Machine Learning na previsão de preços de produtos.
 
-Questionário de estudantes da Universidade Federal do Estado do Rio de Janeiro (UNIRIO).
+A comparação entre Dummy Regressor, Regressão Linear e Random Forest permite avaliar o desempenho dos algoritmos e verificar se os modelos conseguem superar uma previsão baseada na média.
 
-Base de dados disponibilizada pelo DATAUNIRIO:
-
-QE.csv – DATAUNIRIO
-
-📈 Avaliação
-
-Os modelos são avaliados utilizando:
-
-Acurácia;
-Precision;
-Recall;
-F1-score;
-Matriz de confusão.
-
-Também são realizados testes com diferentes valores de random_state para observar a variação dos resultados.
-
-⚠️ Observação
-
-A base possui apenas 95 estudantes. Portanto, os resultados devem ser interpretados com cautela, pois pequenas alterações na divisão dos dados podem influenciar o desempenho dos modelos.
-
-Projeto acadêmico – Grupo 18
-Tema: Educação | Machine Learning
+É importante considerar que o preço de um produto depende de diversos fatores além de suas dimensões físicas, como categoria, marca e características comerciais. Portanto, as variáveis utilizadas representam apenas parte das informações que podem explicar seu preço.
